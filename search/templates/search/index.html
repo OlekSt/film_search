@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-4 mx-auto">
+            <form class="form" method="GET" action="{% url 'search' %}">
+                <div>
+                    <input type="text" name="q" placeholder="Search films and actors">
+                    <div class="input-group-append">
+                        <button class="mx-auto" type="submit">SEARCH</button>
+                    </div>
+                </div>
+            </form>
+        </div>    
+    </div>
+    {% if search_term %}
+        <div class="row mt-4">
+            <div class="col-6">
+                {% if films %}
+                    <h2>Films: </h2>
+                {% else %}
+                    <h3>No films found</h3>
+                    <p>Add a search parameter</p>
+                {% endif %}
+
+                {% for film in films %}
+                {{ film_id }}
+                    <ul><a name="{{ film.1 }}" href="{% url 'film' %}">{{ film.1 }}</a></ul>
+                {% endfor %}
+            </div>
+            <div class="col-6">
+                {% if actors %}
+                    <h2>Actors:  </h2>
+                {% else %} 
+                    <h3>No actors found</h3>
+                    <p>Add a search parameter</p>
+                {% endif %}
+
+                {% for actor in actors %}
+                    <ul><a href="{% url 'actor' %}{{ actor.0 }}">{{ actor.1 }}</a></ul>
+                {% endfor %}
+            </div>
+        </div> 
+    {% else %}
+        <div class="col-6 mx-auto text-center">
+            <h3>No search parameter chosen</h3>
+            <h4>Please enter a search term</h4>
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
