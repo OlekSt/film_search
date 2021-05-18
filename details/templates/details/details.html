@@ -5,14 +5,11 @@
 <div class="container">
     <div class="row my-5">
         <div class="col-4 mx-auto">
-            <h1>Details</h1>
-            
-                <h3>{{ title }}</h3>
-                {% for item in actor_list %}
-                <p><a href="#">{{ item }}</a></p>
-                {% endfor %}
-
-            
+            <h1 class="uppercase">Details:</h1>
+            <h3>{{ title }}</h3>
+            {% for item in list %}
+            <p><a href="#">{{ item }}</a></p>
+            {% endfor %}
         </div>
     </div>    
 </div>
